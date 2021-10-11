@@ -1,0 +1,51 @@
+webproject
+1. polls(프로젝트)
+  - poll 앱
+
+2. pyweb 프로젝트 (인덱스, 로그인, 질문/답변, 주제메뉴)  채점 점수 50점
+- pybo (게시판) 앱
+- common (회원) 앱
+- 주제 앱
+
+3. blog 프로젝트, 북마크 프로젝트 
+
+
+django-admin startproject config . (파일 들어간 후 장고 설치)로켓나오면 ok
+파일 - 설정 - 인터페이터 - 톱니바퀴 2번째 체크 (뉴 말고 2번째)
+
+python manage.py startapp 파일명  (파일 생성)
+python manage.py migrate   (파일생성 후 사용허가)
+그 후 셋팅파일(INSTALLED_APPS)에 가서 pybo.apps.PyboConfig 추가(파이보는파일명)
+python manage.py createsuperuser  (장고 계정 생성)
+python manage.py makemigrations   (0001_initial.py생성)
+python manage.py migrate   (파일 사용 허가)
+
+-------------------------------------------------------------------------
+
+>>> from pybo.models import Question, Answer
+>>> from django.utils import timezone
+
+>>>q1 = Question(subject='pybo란 무엇인가요?', content='pybo가 무엇인지 설명해 주세요.', create_date=timezone.now())
+>>> q1.save()
+>>> q1.subject
+'pybo란 무엇인가요?'
+>>> Question.objects.all()
+<QuerySet [<Question: pybo란 무엇인가요?>]>
+>>> q1 = Question.objects.get(id=1)
+>>> q1.subject
+'pybo란 무엇인가요?'
+>>> a = Answer(question=q1, content='pybo란 파이보드란 의미로 장고 프레임워크 게시판입니다.', create_date=timezone.now())
+>>> a.save()
+>>> q1.answer_set.all()
+<QuerySet [<Answer: pybo란 파이보드란 의미로 장고 프레임워크 게시판입니다.>]>
+
+-------------------------------------------------------------------------
+admin.py에 모델등록 - admin.site.register(파일명)
+admin.site.register(Question)
+admin.site.register(Answer)
+
+셋팅파일 - TEMPLATES - DIRS에 만든 파일(템플리츠) 경로 추가
+[BASE_DIR/ 'templates']
+
+파이보에 urls 파일 추가
+urlpatterns = [] 추가 후 from django.urls import path 에 include 추가 후 콘피그파일 경로를 인클루드로 수정

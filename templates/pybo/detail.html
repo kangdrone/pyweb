@@ -6,11 +6,11 @@
         <h2 class="border-bottom py-2">{{ question.subject }}</h2>
         <div class="card my-3">
             <div class="card-body">
-                <div class="card-text">
+                <div class="card-text" style="width-space : pre-line;">
                     {{ question.content }}
                 </div>
                 <div class="d-flex justify-content-end">
-                    <div class="badge badge-light p-2">
+                    <div class="badge badge-light p-2 text-left">
                         <div class="mb-2">{{ question.author.username }}</div>
                         <div>{{ question.create_date }}</div>
                     </div>
@@ -19,6 +19,7 @@
                 <div class="my-3">
                     <a href="{% url 'pybo:question_modify' question.id %}" class="btn btn-sm btn-outline-secondary">수정</a>
                 </div>
+                {% endif %}
             </div>
         </div>
 
@@ -33,11 +34,13 @@
                     {{ answer.content }}
                 </div>
                 <div class="d-flex justify-content-end">
-                    <div class="badge badge-light p-2">
-                        <div class="badge badge-light p-2 text-left"></div>
+                    <div class="badge badge-light p-2 text-left">
+                        <div class="mb-2">{{ answer.author.username }}</div>
                         <div>{{ answer.create_date }}</div>
                     </div>
                 </div>
+            </div>
+        </div>
                 <div class="my-3">
                     <a href="{% url 'pybo:question_modify' question.id %}" class="btn btn-sm btn-outline-secondary">수정</a>
                 </div>

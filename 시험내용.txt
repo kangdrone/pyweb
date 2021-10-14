@@ -50,3 +50,14 @@ admin.site.register(Answer)
 
 파이보에 urls 파일 추가
 urlpatterns = [] 추가 후 from django.urls import path 에 include 추가 후 콘피그파일 경로를 인클루드로 수정
+
+-------------------------------------------------10.18(월)시험내용
+pyweb로고 로그인 질문/답변 (50점)
+
+설문조사 추가(화면이 떠야함 40점)
+poll파일 url파일, views파일 만들어야함
+
+세션 - img src = ""
+
+애플리케이션 배포
+애플리케이션 test

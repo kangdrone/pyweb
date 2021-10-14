@@ -5,13 +5,18 @@
     <meta charset="UTF-8">
     <title>Hello PyWeb</title>
   <link rel="stylesheet" href="{% static 'pybo/css/bootstrap.css' %}">
-  <!--<link rel="stylesheet" href="{% static 'pybo/css/style.css' %}">-->
+  <!-- <link rel="stylesheet" href="{% static 'pybo/css/style.css' %}"> -->
 </head>
 <body>
-<!--기본 탬플릿 안에 삽입될 내용 start-->
+<!-- 네비게이션 바 -->
+{% include 'navbar.html' %}
+<!-- 기본 탬플릿 안에 삽입될 내용 start -->
 {% block content %}
 
 {% endblock %}
-<!--기본 탬플릿 안에 삽입될 내용 end-->
+<!-- 기본 탬플릿 안에 삽입될 내용 end -->
+<script src="{% static 'pybo/js/jquery-3.6.0.js ' %}"></script>
+<script src="{% static 'pybo/js/bootstrap.js' %}"></script>
+
 </body>
 </html>

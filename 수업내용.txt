@@ -1,1 +1,8 @@
 ModelForm - 중첩 클래스(내부 클래스)
+
+자바스크립트 - 웹 최적화 라이브러리(제이쿼리)
+jquery
+
+파이썬
+
+Download the uncompressed, development jQuery 3.6.0

@@ -9,6 +9,7 @@ webproject
 
 3. blog 프로젝트, 북마크 프로젝트 
 
+번외 - python manage.py startapp 파일명
 
 django-admin startproject config . (파일 들어간 후 장고 설치)로켓나오면 ok
 파일 - 설정 - 인터페이터 - 톱니바퀴 2번째 체크 (뉴 말고 2번째)

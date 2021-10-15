@@ -1,21 +1,34 @@
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 
 from pybo.models import Question
 from pybo.forms import QuestionForm, AnswerForm
 
-# 전체 목록 조회
 def index(request):
-    # return HttpResponse("Welcome Mysite!")
-    question_list = Question.objects.all()
-    content = {'question_list':question_list}
+    return render(request, 'pybo/index.html')
+
+# 전체 목록 조회
+def board(request):
+
+    # 페이지 - 127.0.0.1:8000/pybo/?page=2
+    page = request.GET.get('page', '1')
+
+    # 조회
+    question_list = Question.objects.order_by('-create_date')  # -creat_date : 내림차순 정렬
+
+    paginator = Paginator(question_list, 10)   # 10 = 페이지당 개수
+    page_obj = paginator.get_page(page)
+
+    content = {'question_list': page_obj}
     return render(request, 'pybo/question_list.html', content)
 
 # 상세 페이지 조회
 def detail(request, question_id):
     question = Question.objects.get(id=question_id)
+    question = get_object_or_404(Question, pk=question_id)
     cotext = {'question':question}
     return render(request, 'pybo/detail.html', cotext)
 
@@ -61,7 +74,7 @@ def question_modify(request, question_id):
         form = QuestionForm(request.POST, instance=question)
         if form.is_valid():
             question = form.save(commit=False)
-            question.author = request.user
+            question.author = request.user   # 세션권한이 있는 user 생성
             question.modify_date = timezone.now()
             question.save()
             return redirect('pybo:detail', question_id=question.id)
@@ -69,3 +82,10 @@ def question_modify(request, question_id):
         form = QuestionForm(instance=question)   # 기존의 내용을 가져옴(question)
     context = {'form': form}
     return render(request, 'pybo:question_form.html', context)
+
+# 질문 삭제
+@login_required(login_url='common:login')
+def question_delete(request, question_id):
+    question = Question.objects.get(id=question_id)
+    question.delete()
+    return redirect('pybo:index')

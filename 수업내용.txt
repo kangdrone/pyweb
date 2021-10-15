@@ -5,4 +5,21 @@ jquery
 
 파이썬
 
+제이쿼리 다운
 Download the uncompressed, development jQuery 3.6.0
+
+
+paginator 클래스 (점프 투 장고 p.133)
+paginator.count 전체 게시물수
+paginator.per page 페이지당 보여줄 게시물 수
+paginator. ? ?
+paginator. ? ?
+. . . .
+
+
+게시물 번호 공식
+
+일렬번호 = 전체 게시물수 - 시작 인덱스 - 현재 인덱스 + 1
+ex)
+1페이지 일렬번호 12 - 1 - (0~9반복) + 1 -> 12~3까지 표시
+2페이지 일렬번호 ? - 11 - (0~9반복) + ? -> ?~?까지 표시

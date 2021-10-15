@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div id="container">
+    <div class="jumbotron">
+        <div class="text-center"><h2>Welcome Have a nice Day!</h2></div>
+    </div>
+    <div class="text-center">
+        <img src="{% static 'pybo/images/coffee-blue.jpg' %}" id="pic">
+    </div>
+    <div>
+        <p id="demo" class="text-center my-3" ></p>
+    </div>
+
+</div>
+
+{% endblock %}
+{% block script %}
+<script>
+    //메인 이미지 이벤트
+    var pic = document.getElementById('pic')
+    pic.addEventListener('mouseover', function(){
+        pic.src = '../../static/pybo/images/coffee-pink.jpg';
+    });
+
+    pic.addEventListener('mouseout', function(){
+        pic.src = '../../static/pybo/images/coffee-blue.jpg';
+    });
+
+    // 디지털 시계
+    setInterval(myWatch, 1000)
+    function myWatch(){
+        var date = new Date();
+        var now = date.toLocaleTime();
+        document.getElementById('demo').innerHTML = now;
+    }
+</script>
+{% endblock %}

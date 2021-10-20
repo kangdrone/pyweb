@@ -1,0 +1,10 @@
+팀 작업 할려면
+레퍼지토리 생성에서 Public에서
+Private로 바꿔야함
+
+1.팀장이 깃허브에 레포지터리저장소를 Private로 만든다.
+2.팀원 초대 - settings -> Manage access -> addpeople -> 팀원 깃허브 계정아이디로 초대
+3.팀원은 이메일에서 초대 승인
+4.팀원(깃, 소프트웨어사용) 공동작업
+- 업로드 : git init, git add , git commit, git push
+- 다운로드 : git clone, git pull

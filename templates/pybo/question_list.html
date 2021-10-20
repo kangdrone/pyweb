@@ -5,9 +5,11 @@
     <!-- 검색창 -->
     <div class="row justify-content-end my-3">
         <div class="col-4 input-group">
-            <input type="text" class="form-control kw" value="{{ kw|default_if_none:'' }}">
+            <input type="text" class="form-control kw"
+                   value="{{ kw|default_if_none:'' }}">
             <div class="input-group-append">
-                <button class="btn btn-ontline-secondary" type="button" id="btn-search">찾기</button>
+                <button class="btn btn-outline-secondary"
+                        type="button" id="btn_search">찾기</button>
             </div>
         </div>
     </div>
@@ -44,10 +46,8 @@
     <!-- 이전 페이지 -->
         {% if question_list.has_previous %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ question_list.previous_page_number }}"
-                data-page="{{ question_list.previous_page_number }}">
-                이전
-            </a>
+            <a class="page-link" href="#"
+                data-page="{{ question_list.previous_page_number }}">이전</a>
         </li>
         {% else %}
         <li class="page-item disabled">
@@ -67,7 +67,7 @@
             </li>
             {% else %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ page_number }}">
+                <a class="page-link" href="#" data-page="{{ page_number }}">
                     {{ page_number }}
                 </a>
             </li>
@@ -76,9 +76,8 @@
     <!-- 다음 페이지 -->
         {% if question_list.has_next %}
         <li class="page-item">
-            <a class="page-link" href="#" data-page="{{ question_list.next_page_number }}">
-                다음
-            </a>
+            <a class="page-link" href="#"
+               data-page="{{ question_list.next_page_number }}">다음</a>
         </li>
         {% else %}
         <li class="page-item disabled">
@@ -99,5 +98,21 @@
 </form>
 {% endblock %}
 {% block script %}
+<script>
+    $(document).ready(function(){
+        //페이지 번호 클릭
+        $(".page-link").on('click', function(){
+            $('#page').val($(this).data('page')); //data-page의 page번호를 id가 page인 필드에 설정
+            $('#searchForm').submit();  //폼을 전송
+        });
+
+        //검색 버튼 클릭
+        $("#btn_search").on('click', function(){
+            $("#kw").val($('.kw').val()); //입력된 kw값을 id가 kw인 필드에 설정
+            $('#page').val(1);            //1페이지부터 검색
+            $('#searchForm').submit();  //폼을 전송
+        });
+    });
+</script>
 
 {% endblock %}

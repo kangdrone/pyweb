@@ -7,4 +7,4 @@ class UserForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ("username", "email")   # 튜플 구조
+        fields = ("username", "email")  #튜플 구조

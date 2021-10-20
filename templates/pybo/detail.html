@@ -58,12 +58,12 @@
 {% endblock %}
 {% block script %}
 <script>
-    $(document).ready(function(){
-        $('.delete').on('click', function(){
-            if(confirm("정말로 삭제하시겠습니까?")){
-                location.href = $(this).data('url');   // data-url 경로 설정
-            }
-        });
+  $(document).ready(function(){
+    $('.delete').on('click', function(){
+        if(confirm("정말로 삭제하시겠습니까?")){
+            location.href = $(this).data('uri');  //data-uri 경로 설정
+        }
     });
+  });
 </script>
 {% endblock %}
